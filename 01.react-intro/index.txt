@@ -1,0 +1,6 @@
+spa - single page application
+mpa - multi page application
+
+npm - node package module
+
+material theme icon - vscode extention
