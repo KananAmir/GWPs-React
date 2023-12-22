@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  outline: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  @media only screen and (max-width: 1199px) {
+    padding: 0 5%;
+  }
+}
+
+table,
+tr,
+td,
+th {
+  border: 2px solid teal;
+}
