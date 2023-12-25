@@ -1,0 +1,33 @@
+#carousel {
+  .swiper {
+    .swiper-wrapper {
+      .swiper-slide {
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        h3 {
+          color: #1b745e;
+          font-style: italic;
+        }
+        h1 {
+          color: #1b745e;
+        }
+        &:nth-child(1) {
+          background-image: url("../../assets/images/bg1.jpg");
+        }
+        &:nth-child(2) {
+          background-image: url("../../assets/images/bg2.jpg");
+        }
+        &:nth-child(3) {
+          background-image: url("../../assets/images/bg3.jpg");
+        }
+      }
+    }
+  }
+}
