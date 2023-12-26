@@ -1,0 +1,30 @@
+header {
+  background-color: teal;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+    .logo {
+      color: #fff;
+    }
+    nav {
+      ul {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+        li {
+          a {
+            color: #fff;
+            font-size: 1.2rem;
+            text-decoration: none;
+            &.active {
+              text-decoration: underline;
+              color: rgb(228, 133, 16);
+            }
+          }
+        }
+      }
+    }
+  }
+}
