@@ -7,7 +7,7 @@ const TableRow = ({
   setUnitPrice,
   setQuantityPerUnit,
   setProductName,
-  setEditStatus,
+  // setEditStatus,
   setEditId,
 }) => {
   const btnRef = useRef();
@@ -20,6 +20,10 @@ const TableRow = ({
       if (statusCode === 200) {
         // console.log(btn);
         btnRef.current.closest("tr").remove();
+
+        setProductName("");
+        setQuantityPerUnit("");
+        setUnitPrice(0);
       }
     }
   };
@@ -30,7 +34,7 @@ const TableRow = ({
     setProductName(editedProduct.name);
     setQuantityPerUnit(editedProduct.quantityPerUnit);
     setUnitPrice(editedProduct.unitPrice);
-    setEditStatus(true);
+    // setEditStatus(true);
     setEditId(id);
     window.scrollTo(0, 0);
   };

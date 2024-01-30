@@ -6,15 +6,17 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
+import Spinner from "../../components/spinner";
+import Loading from "../../components/spinner";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
   const [productName, setProductName] = useState("");
   const [quantityPerUnit, setQuantityPerUnit] = useState("");
   const [unitPrice, setUnitPrice] = useState(0);
-  const [editStatus, setEditStatus] = useState(false);
+  // const [editStatus, setEditStatus] = useState(false);
   const [editId, setEditId] = useState(null);
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     // console.log("mount");
     // getData();
@@ -25,8 +27,15 @@ const ProductsPage = () => {
   }, []);
 
   async function getProducts() {
-    const result = await getData("products");
-    setProducts(result);
+    try {
+      setLoading(true);
+      const result = await getData("products");
+      setProducts(result);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   }
   // const getData = async () => {
   //   try {
@@ -47,7 +56,7 @@ const ProductsPage = () => {
           quantityPerUnit,
           unitPrice,
         };
-        if (!editStatus) {
+        if (!editId) {
           let res = await addData("products", product);
           // console.log(res);
         } else {
@@ -94,34 +103,38 @@ const ProductsPage = () => {
             <Button type="submit">Submit</Button>
           </Form>
         </Row>
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Product Name</th>
-              <th>QuantityPerUnit</th>
-              <th>Unit Price</th>
-              <th>Discontinued</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {products.map((item) => {
-              return (
-                <TableRow
-                  data={products}
-                  product={item}
-                  key={item.id}
-                  setProductName={setProductName}
-                  setQuantityPerUnit={setQuantityPerUnit}
-                  setUnitPrice={setUnitPrice}
-                  setEditStatus={setEditStatus}
-                  setEditId={setEditId}
-                />
-              );
-            })}
-          </tbody>
-        </table>
+        {loading ? (
+          <Loading />
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>QuantityPerUnit</th>
+                <th>Unit Price</th>
+                <th>Discontinued</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((item) => {
+                return (
+                  <TableRow
+                    data={products}
+                    product={item}
+                    key={item.id}
+                    setProductName={setProductName}
+                    setQuantityPerUnit={setQuantityPerUnit}
+                    setUnitPrice={setUnitPrice}
+                    // setEditStatus={setEditStatus}
+                    setEditId={setEditId}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
+        )}
       </Container>
     </>
   );
